@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astralis Zoo - Penjelajahan Satwa</title>
+    <!-- Tailwind CSS untuk tata letak responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts untuk tipografi yang ramah -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet kustom -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="paper-texture">
+
+    <!-- BAGIAN UTAMA (HOME) -->
+    <div id="home" class="ghibli-gradient relative">
+        <!-- Area Langit - Fokus Aves -->
+        <section class="h-screen flex flex-col items-center justify-center pt-20">
+            <h1 class="text-7xl md:text-9xl text-white font-astralis mb-20 text-center drop-shadow-lg">
+                Astralis
+            </h1>
+            
+            <div onclick="openCategory('aves')" class="float-anim cursor-pointer group flex flex-col items-center">
+                <div class="text-8xl group-hover:scale-110 transition duration-300">🦅</div>
+                <span class="bg-white/95 px-8 py-3 rounded-full font-bold text-blue-500 shadow-xl mt-4 font-title text-xl uppercase tracking-widest">
+                    Jelajah Aves
+                </span>
+            </div>
+            <p class="text-white mt-12 font-bold opacity-80 animate-bounce text-xl">Gulir ke bawah untuk menjelajah ↓</p>
+        </section>
+
+        <!-- Area Daratan - Fokus Mamalia -->
+        <section class="h-screen flex flex-col items-center justify-center">
+            <div onclick="openCategory('mamalia')" class="float-anim cursor-pointer group flex flex-col items-center" style="animation-delay: 0.5s;">
+                <div class="text-8xl group-hover:scale-110 transition duration-300">🐯</div>
+                <span class="bg-white/95 px-8 py-3 rounded-full font-bold text-green-600 shadow-xl mt-4 font-title text-xl uppercase tracking-widest">
+                    Jelajah Mamalia
+                </span>
+            </div>
+        </section>
+
+        <!-- Area Tropis/Pasir - Fokus Reptil -->
+        <section class="h-screen flex flex-col items-center justify-center">
+            <div onclick="openCategory('reptil')" class="float-anim cursor-pointer group flex flex-col items-center" style="animation-delay: 1s;">
+                <div class="text-8xl group-hover:scale-110 transition duration-300">🦎</div>
+                <span class="bg-white/95 px-8 py-3 rounded-full font-bold text-orange-600 shadow-xl mt-4 font-title text-xl uppercase tracking-widest">
+                    Jelajah Reptil
+                </span>
+            </div>
+        </section>
+
+        <!-- Area Perairan - Fokus Pisces -->
+        <section class="h-screen flex flex-col items-center justify-center">
+            <div onclick="openCategory('pisces')" class="float-anim cursor-pointer group flex flex-col items-center" style="animation-delay: 1.5s;">
+                <div class="text-8xl group-hover:scale-110 transition duration-300">🐬</div>
+                <span class="bg-white/95 px-8 py-3 rounded-full font-bold text-blue-700 shadow-xl mt-4 font-title text-xl uppercase tracking-widest">
+                    Jelajah Pisces
+                </span>
+            </div>
+        </section>
+    </div>
+
+    <!-- HALAMAN DAFTAR KATEGORI (LAYER) -->
+    <div id="category-page" class="page-layer p-6 md:p-16">
+        <div class="max-w-6xl mx-auto">
+            <button onclick="goBack('home')" class="mb-10 flex items-center gap-2 text-amber-900 font-bold bg-amber-200 px-8 py-3 rounded-full hover:bg-amber-300 transition-colors shadow-md">
+                ⬅ KEMBALI KE PETA
+            </button>
+            <h2 id="cat-title" class="text-6xl text-amber-900 mb-4 font-title uppercase tracking-tighter">JUDUL KATEGORI</h2>
+            <p id="cat-desc" class="text-2xl text-amber-800 mb-12 font-fact italic"></p>
+            <div id="animal-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+        </div>
+    </div>
+
+    <!-- HALAMAN DETAIL SATWA (LAYER) -->
+    <div id="detail-page" class="page-layer p-6 md:p-16">
+        <div class="max-w-4xl mx-auto">
+            <button onclick="goBack('category-page')" class="mb-10 font-bold text-amber-900 bg-amber-200 px-8 py-3 rounded-full hover:bg-amber-300 transition-colors shadow-md">
+                ⬅ KEMBALI KE DAFTAR
+            </button>
+            
+            <div class="bg-white p-10 rounded-[3.5rem] shadow-2xl border-8 border-white relative overflow-hidden">
+                <div id="detail-header-color" class="absolute top-0 left-0 w-full h-5"></div>
+                
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div id="detail-emoji" class="text-9xl bg-stone-50 p-12 rounded-full border-4 border-dashed border-amber-200"></div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 id="detail-name" class="text-6xl text-amber-900 mb-4 font-title uppercase">NAMA SATWA</h3>
+                        <div class="bg-amber-100 inline-block px-5 py-1.5 rounded-full text-amber-800 font-bold mb-6 font-title tracking-widest">FAKTA UNIK</div>
+                        <p id="detail-fact" class="text-3xl text-gray-700 leading-relaxed font-fact"></p>
+                    </div>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-green-50 rounded-3xl border-2 border-green-100">
+                        <h4 class="text-2xl text-green-800 mb-3 font-title tracking-wide">MAKANAN</h4>
+                        <p id="detail-diet" class="text-xl font-fact text-green-900"></p>
+                    </div>
+                    <div class="p-6 bg-blue-50 rounded-3xl border-2 border-blue-100">
+                        <h4 class="text-2xl text-blue-800 mb-3 font-title tracking-wide">HABITAT</h4>
+                        <p id="detail-habitat" class="text-xl font-fact text-blue-900"></p>
+                    </div>
+                    <div class="p-6 bg-pink-50 rounded-3xl border-2 border-pink-100 md:col-span-2">
+                        <h4 class="text-2xl text-pink-800 mb-3 font-title tracking-wide">🐣 REPRODUKSI</h4>
+                        <p id="detail-reproduksi" class="text-xl font-fact text-pink-900"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script utama -->
+    <script src="script.js"></script>
+</body>
+</html>

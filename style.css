@@ -1,0 +1,114 @@
+/* --- ASTRALIS ZOO - STYLESHEET --- */
+
+/* Mengimpor font kustom untuk estetika website */
+@font-face {
+    font-family: 'SuperSnack';
+    src: url('https://fonts.cdnfonts.com/s/76678/SuperSnack.woff');
+}
+
+@font-face {
+    font-family: 'Dachery';
+    src: url('https://fonts.cdnfonts.com/s/14768/Dachery.woff');
+}
+
+:root {
+    --paper: #fefcf0;
+    --primary: #2d3436;
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #a8d8ea;
+    color: var(--primary);
+    overflow-x: hidden;
+}
+
+/* Tipografi kustom */
+.font-astralis {
+    font-family: 'SuperSnack', sans-serif;
+    text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.font-fact {
+    font-family: 'Dachery', cursive;
+    line-height: 1.4;
+}
+
+.font-title {
+    font-family: 'SuperSnack', sans-serif;
+}
+
+/* Latar belakang gradasi yang berubah saat di-scroll */
+.ghibli-gradient {
+    background: linear-gradient(to bottom, 
+        #a8d8ea 0%,    /* Langit Atas */
+        #f1f5f9 15%,   /* Area Awan */
+        #95e1d3 40%,   /* Area Hutan */
+        #fce38a 70%,   /* Area Pasir */
+        #3490dc 100%   /* Kedalaman Laut */
+    );
+    min-height: 400vh;
+}
+
+/* Efek tekstur kertas pada seluruh halaman */
+.paper-texture {
+    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+}
+
+/* Sistem Layering Halaman (Single Page Application style) */
+.page-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    overflow-y: auto;
+    background-color: var(--paper);
+    background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+    animation: slideUp 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.page-layer.active {
+    display: block;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Desain kartu hewan dalam kategori */
+.animal-card {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    background: white;
+    border: 4px solid transparent;
+}
+
+.animal-card:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #fce38a;
+}
+
+/* Animasi mengambang untuk elemen interaktif */
+.float-anim {
+    animation: floating 3.5s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Kustom scrollbar untuk estetika */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #fce38a;
+    border-radius: 10px;
+}
