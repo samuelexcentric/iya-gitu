@@ -1,5 +1,3 @@
-/* --- ASTRALIS ZOO - JAVASCRIPT --- */
-
 const zooData = {
     mamalia: {
         title: "Dunia Mamalia",
